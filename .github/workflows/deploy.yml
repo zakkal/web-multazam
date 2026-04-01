@@ -1,0 +1,38 @@
+name: Deploy to Hosting
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  web-deploy:
+    name: 🚀 FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🚚 Checkout latest code
+      uses: actions/checkout@v3
+
+    - name: 📦 Sync files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: 151.243.222.70
+        username: laporan-santri@zakkal.my.id
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /
+        protocol: ftp
+        port: 21
+        timeout: 60000
+        log-level: verbose
+        exclude: |
+          **/.git
+          **/.git/**
+          **/node_modules/**
+          **/vendor/**
+          **/.env
+          **/storage/logs/**
+          **/storage/framework/sessions/**
+          **/storage/framework/views/**
+          **/storage/framework/cache/**
+          **/public/storage/**
+          **/.github/**
