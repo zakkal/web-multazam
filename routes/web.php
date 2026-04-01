@@ -36,3 +36,8 @@ Route::get('/fix-storage', function() {
     \Illuminate\Support\Facades\Artisan::call('storage:link');
     return 'Storage Link Created Successfully!';
 });
+
+Route::get('/optimize-clear', function() {
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    return 'Cache Cleared Successfully!';
+});
