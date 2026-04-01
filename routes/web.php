@@ -31,3 +31,8 @@ Route::get('/setoran', SetoranPage::class)->name('setoran');
 Route::get('/laporan', LaporanPage::class)->name('laporan');
 Route::get('/pengaturan', PengaturanPage::class)->name('pengaturan');
 // Route::get('/pembayaran', PaymentPage::class)->name('pembayaran');
+
+Route::get('/fix-storage', function() {
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    return 'Storage Link Created Successfully!';
+});
